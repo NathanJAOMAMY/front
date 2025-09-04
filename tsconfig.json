@@ -1,0 +1,16 @@
+//@ts-ignore
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "jsx": "react-jsx",              
+    "allowJs": true,                  // Accepte les fichiers .js et .jsx
+    "checkJs": false,                 // Ignore les vérifications de type sur les fichiers JS
+    "noEmit": true,                   // Empêche la génération de fichiers compilés
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}

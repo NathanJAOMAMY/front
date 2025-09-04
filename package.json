@@ -1,0 +1,82 @@
+{
+  "name": "intranet",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "main.cjs",
+  "build": {
+    "appId": "com.tonapp.react",
+    "productName": "Intranet",
+    "win": {
+      "target": "nsis"
+    },
+    "files": [
+      "dist/**",
+      "main.cjs",
+      "server/**",
+      "!**/node_modules/*/{test,__tests__}/**",
+      "!**/node_modules/emnapi/core",
+      "!**/*.map"
+    ],
+    "asarUnpack": [
+      "server/src/**"
+    ],
+    "extraResources": [
+      {
+        "from": "../server/src",
+        "to": "server"
+      }
+    ]
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "desktop": "electron-builder"
+  },
+  "dependencies": {
+    "@emnapi/core": "^1.4.5",
+    "@reduxjs/toolkit": "^2.8.2",
+    "@supabase/supabase-js": "^2.53.0",
+    "@tailwindcss/vite": "^4.0.14",
+    "axios": "^1.8.4",
+    "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
+    "express": "^5.1.0",
+    "framer-motion": "^12.23.12",
+    "js-file-download": "^0.4.12",
+    "mammoth": "^1.9.1",
+    "multer": "^1.4.5-lts.2",
+    "react": "^19.0.0",
+    "react-circular-progressbar": "^2.2.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.3.0",
+    "react-toastify": "^11.0.5",
+    "redux": "^5.0.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "tailwindcss": "^4.0.14",
+    "uuid": "^11.1.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@iconify/react": "^5.2.0",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^35.1.5",
+    "electron-builder": "^26.0.12",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.2.0"
+  }
+}
