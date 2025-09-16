@@ -126,13 +126,13 @@ const Login = () => {
     <div
       className="h-screen w-screen flex items-center justify-center relative text-gray-800"
       style={{
-        backgroundImage: `url(${bg})`,
+        background: `var(--color-bg)`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+      {/* <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div> */}
 
       {/* Modal inscription */}
       <Modal
