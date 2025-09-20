@@ -49,7 +49,7 @@ const Login = () => {
         const { data } = await axios.get(`/api/users/${parsedUser._id}`);
         if (!data) {
           // localStorage.removeItem("userInfo");
-          navigate("/login");
+          // navigate("/login");
         }
       } catch {
         localStorage.removeItem("userInfo");
