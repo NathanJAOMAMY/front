@@ -48,7 +48,7 @@ const Login = () => {
         const parsedUser = JSON.parse(localUser);
         const { data } = await axios.get(`/api/users/${parsedUser._id}`);
         if (!data) {
-          localStorage.removeItem("userInfo");
+          // localStorage.removeItem("userInfo");
           navigate("/login");
         }
       } catch {
