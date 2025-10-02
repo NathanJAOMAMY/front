@@ -1,4 +1,4 @@
-import type { ChatMessage } from "../../typeData";
+import type { ChatMessage } from "../../data/typeData";
 import { FiPaperclip } from "react-icons/fi";
 import { downloadFile, findeUser } from "../../tools/tools";
 import { useSelector } from "react-redux";

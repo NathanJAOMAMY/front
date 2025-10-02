@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import type { ChatConversation, User } from "../../typeData";
+import type { ChatConversation, User } from "../../data/typeData";
 import { fetchUser } from "./chatFonction";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../redux";
@@ -10,9 +10,9 @@ import {
   addConversationUser,
   markAsRead,
   setCurrentConversation,
-} from "../../features/chat/chatSlice";
+} from "../../redux/features/chat/chatSlice";
 import ChatAdd from "./ChatAdd";
-import { setUser } from "../../features/user/user";
+import { setUser } from "../../redux/features/user/user";
 import {
   FiCheckCircle,
   FiList,

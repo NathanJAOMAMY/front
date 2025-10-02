@@ -18,7 +18,6 @@ export function Pannel({ title, children }) {
       <div className={`${open ? "h-fit opacity-100" : "h-0 opacity-0 invisible"} py-1`}>
         {children}
       </div>
-
     </div>
   )
 }

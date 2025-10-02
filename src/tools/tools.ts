@@ -1,6 +1,9 @@
 import { supabase } from "../supabase";
 import { v4 as uuid } from "uuid";
-import { User } from "../typeData";
+import { User } from "../data/typeData";
+import axios from "axios";
+import { API_BASE_URL } from "../api";
+import fileDownload from "js-file-download";
 
 const userVoid: User = {
   idUser: "",
@@ -11,7 +14,7 @@ const userVoid: User = {
   email: "",
   responsibilities: [],
   statusUser: true,
-  role: "",
+  roleUser: "",
   createdAt: "",
   updatedAt: "",
   avatar: "",
@@ -44,12 +47,13 @@ export const uploadFile = async (
   return urlData.publicUrl;
 };
 
-export const deleteFile = async (fileUrl : string) => {
+export const deleteFile = async (fileUrl: string) => {
   if (!fileUrl) return false;
 
   try {
     // Extraire le chemin relatif du fichier dans le bucket
-    const baseUrl = "https://mxbzfekwbvybtxlutkpz.supabase.co/storage/v1/object/public/intranet/";
+    const baseUrl =
+      "https://mxbzfekwbvybtxlutkpz.supabase.co/storage/v1/object/public/intranet/";
     const filePath = fileUrl.replace(baseUrl, "");
 
     if (!filePath) return false;
@@ -71,6 +75,33 @@ export const deleteFile = async (fileUrl : string) => {
   }
 };
 
+export const updateFile = async (id: string, name: string) => {
+  try {
+    let response = await axios.put(`${API_BASE_URL}/file/update`, {
+      id,
+      newFileName: name,
+    });
+    if (response.data.status === 201) {
+      return true;
+    } else return false;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+export const updateFolder = async (id: string, name: string) => {
+  try {
+    await axios.put(`${API_BASE_URL}/folder/update`, {
+      id,
+      newFolderName: name,
+    });
+    return true;
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
 export const downloadFile = async (url: string, filename: string) => {
   const response = await fetch(url);
   const blob = await response.blob();
@@ -84,7 +115,54 @@ export const downloadFile = async (url: string, filename: string) => {
   link.remove();
   URL.revokeObjectURL(blobUrl); // nettoyage
 };
-export const findeUser = (idUser: string, allUsers :User[]) => {
+
+export const downloadFolder = async (folderId: string, folderName: string) => {
+  try {
+    const response = await axios.get(
+      `${API_BASE_URL}/api/download-folder/${folderName}`,
+      {
+        responseType: "blob",
+        onDownloadProgress: (progressEvent) => {
+          const total = progressEvent.total as number;
+          const current = progressEvent.loaded;
+          const percentCompleted = Math.floor((current / total) * 100);
+          console.log(percentCompleted);
+        },
+      }
+    );
+
+    fileDownload(response.data, `${folderName}.zip`);
+  } catch (error) {
+    console.error("Erreur de téléchargement", error);
+  }
+};
+export const findeUser = (idUser: string, allUsers: User[]) => {
   let userFinded = allUsers.find((u) => u.idUser === idUser);
   return userFinded ? userFinded : userVoid;
+};
+export const removeFolder = async (id: string) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/folder/${id}`);
+    // response.data
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const formatDate = (isoString: string): string => {
+  const date = new Date(isoString);
+
+  if (isNaN(date.getTime())) {
+    throw new Error("Date invalide !");
+  }
+
+  let formatted = new Intl.DateTimeFormat("fr-FR", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+
+  // formatted = formatted.replace(".", "");
+
+  return formatted;
 };

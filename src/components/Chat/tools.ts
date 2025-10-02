@@ -1,4 +1,4 @@
-import type { ChatConversation, ChatMessage, User } from "../../typeData";
+import type { ChatConversation, ChatMessage, User } from "../../data/typeData";
 
 export const getLastMessageForConversation = (msg: ChatMessage[] = []) => {
   if (!msg || msg.length === 0) {

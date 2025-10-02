@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useState, useMemo } from "react";
-import type { ChatMessage } from "../../typeData";
+import type { ChatMessage } from "../../data/typeData";
 
 type UnreadMap = { [id: string]: number };
 interface ChatCtx {

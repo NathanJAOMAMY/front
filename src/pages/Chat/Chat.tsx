@@ -8,23 +8,24 @@ import {
   fetchMessagesThunk,
   markAsRead,
   updateLastMessage,
-} from "../../features/chat/chatSlice";
+} from "../../redux/features/chat/chatSlice";
 import {
   fetChatConversation,
   fetchConversationUser,
   fetchUser,
 } from "../../components/Chat/chatFonction";
-import { setUser } from "../../features/user/user";
+import { setUser } from "../../redux/features/user/user";
 import { socket } from "../../socket";
-import { ChatMessage } from "../../typeData";
+import { ChatMessage } from "../../data/typeData";
+import { RootState } from "../../redux";
 
 const ChatApp: React.FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const chatConversations = useAppSelector((state) => state.chat.chatConversations);
-  const currentUser = useAppSelector((state) => state.user.currentUser);
-  const messages = useAppSelector((state) => state.chat.messages);
-  const loading = useAppSelector((state) => state.chat.loading);
+  const chatConversations = useAppSelector((state: RootState) => state.chat.chatConversations);
+  const currentUser = useAppSelector((state: RootState) => state.user.currentUser);
+  const messages = useAppSelector((state: RootState) => state.chat.messages);
+  const loading = useAppSelector((state: RootState) => state.chat.loading);
 
   useEffect(() => {
     if (!currentUser.idUser) return;

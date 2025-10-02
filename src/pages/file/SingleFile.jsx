@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import fileEmpty from "../../assets/images/file empty.jpg";
@@ -13,12 +12,7 @@ import { getFileIcon, getTypeFile } from "../../utils/fileHelpers";
 import ImageWithPlaceholder from "../../components/ImageWithPlaceholder";
 
 const SingleFile = () => {
-  let params = useParams();
-
-  const folderName = params.folder;
-
   const [insertedFile, setInsertedFile] = useState([]);
-
   const [fileUrl, setFileUrl] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isImageOpen, setIsImageOpen] = useState(false);
@@ -27,10 +21,10 @@ const SingleFile = () => {
   const [loading, setLoading] = useState(false);
   const [visibleRows, setVisibleRows] = useState(20);
 
-  const handleViewFile = async (type, url) => {
-    // const folderName = null;
-    // const url = `${API_BASE_URL}/file/read/${folderName}/${filename}`;
+  let params = useParams();
+  const folderName = params.folder;
 
+  const handleViewFile = async (type, url) => {
     setFileUrl(url);
     setIsOpen(true);
     setFileTypeOpen(type);
@@ -87,11 +81,10 @@ const SingleFile = () => {
                   {row.map((cell, cellIndex) => (
                     <td
                       key={cellIndex}
-                      className={`${
-                        rowIndex === 0
-                          ? "p-4 border-b border-slate-300 bg-slate-50"
-                          : "p-4 border-b border-slate-200"
-                      }`}
+                      className={`${rowIndex === 0
+                        ? "p-4 border-b border-slate-300 bg-slate-50"
+                        : "p-4 border-b border-slate-200"
+                        }`}
                     >
                       {cell}
                     </td>
@@ -114,7 +107,7 @@ const SingleFile = () => {
         </div>
       );
     } else if (fileTypeOpen === "word") {
-      return <WordViewer fileUrl={fileUrl} folder={folderName} loading={loading}/>;
+      return <WordViewer fileUrl={fileUrl} folder={folderName} loading={loading} />;
     } else {
       return (
         <p className="text-gray-500 text-center">
@@ -205,35 +198,30 @@ const SingleFile = () => {
           <div className="grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-3 gap-2 justify-center items-center">
             {insertedFile.map((item, key) => {
               return (
-                  <div key={key} className="grid justify-between items-center">
-                    <div className="flex items-center flex-col justify-center cursor-pointer">
-                      {getTypeFile(item.type_file) === "image" ? (
-                        <div
-                          className="flex items-center justify-center w-full h-36"
-                          onClick={() => handleImageClick(item.url)}
-                        >
-                          <ImageWithPlaceholder
-                            src={`${item.url}`}
-                            alt={item.libelle_file}
-                          />
-                        </div>
-                      ) : (
-                        <Icon
-                          className="size-24"
-                          icon={getFileIcon(item.type_file)}
-                          onClick={() =>
-                            handleViewFile(
-                              getTypeFile(item.type_file),
-                              item.url
-                            )
-                          }
+                <div key={key} className="grid justify-between items-center">
+                  <div className="flex items-center flex-col justify-center cursor-pointer">
+                    {getTypeFile(item.type_file) === "image" ? (
+                      <div
+                        className="flex items-center justify-center w-full h-36"
+                        onClick={() => handleImageClick(item.url)}
+                      >
+                        <ImageWithPlaceholder
+                          src={`${item.url}`}
+                          alt={item.libelle_file}
                         />
-                      )}
-                      <p className="truncate w-28 mx-auto">
-                        {item.libelle_file.split(".")[0]}
-                      </p>
-                    </div>
+                      </div>
+                    ) : (
+                      <Icon
+                        className="size-24"
+                        icon={getFileIcon(item.type_file)}
+                        onClick={() => handleViewFile(getTypeFile(item.type_file), item.url)}
+                      />
+                    )}
+                    <p className="truncate w-28 mx-auto">
+                      {item.libelle_file.split(".")[0]}
+                    </p>
                   </div>
+                </div>
               );
             })}
           </div>

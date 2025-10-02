@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ChatConversation, User } from "../../typeData";
+import type { ChatConversation, User } from "../../data/typeData";
 import { Icon } from "@iconify/react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux";
@@ -9,7 +9,7 @@ import { FiChevronDown, FiChevronRight, FiEdit, FiFile } from "react-icons/fi";
 import ChatAdd from "./ChatAdd";
 import { getConversationDisplay } from "./tools";
 import { updatedConversation } from "./chatFonction";
-import { addConversation } from "../../features/chat/chatSlice";
+import { addConversation } from "../../redux/features/chat/chatSlice";
 import EditableText from "./EditableText";
 import ConversationInfo from "./Info";
 import MediaModal from "../MediaModal";

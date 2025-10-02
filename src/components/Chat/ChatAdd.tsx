@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import type { ChatConversation, User } from "../../typeData";
+import type { ChatConversation, User } from "../../data/typeData";
 import { useDispatch, useSelector } from "react-redux";
-import { addConversation, addConversationUser } from "../../features/chat/chatSlice";
+import { addConversation, addConversationUser } from "../../redux/features/chat/chatSlice";
 import { RootState } from "../../redux";
 import { socket } from "../../socket";
 import { v4 as uuid } from "uuid";
 import { toast } from "react-toastify";
+//@ts-ignore
 import 'react-toastify/dist/ReactToastify.css';
 import { conversationExist } from "./tools";
 import { findConversationUser, updatedConversation } from "./chatFonction";
@@ -267,11 +268,11 @@ const ChatAdd: React.FC<ChatAddProps> = ({
 
             {/* Boutons */}
             <div className="flex absolute bottom-2 right-2 gap-2 p-4 rounded-lg bg-white justify-end">
-              <button onClick={onAdd} className="bg-primary text-white px-4 py-2 rounded">
-                {conversation ? "Ajouter" : "Valider"}
-              </button>
               <button onClick={() => onHide(false)} className="border border-primary text-primary px-4 py-2 rounded">
                 Annuler
+              </button>
+              <button onClick={onAdd} className="bg-primary text-white px-4 py-2 rounded">
+                {conversation ? "Ajouter" : "Valider"}
               </button>
             </div>
           </motion.div>
@@ -313,19 +314,18 @@ const ChatAdd: React.FC<ChatAddProps> = ({
                     size={20}
                   />
                 </div>
-
                 <div className="flex gap-2 justify-end">
-                  <button
-                    onClick={onAdd}
-                    className="bg-primary text-white px-4 py-2 rounded"
-                  >
-                    Ajouter
-                  </button>
                   <button
                     onClick={() => setIsNameChat(false)}
                     className="border border-primary text-primary px-4 py-2 rounded"
                   >
                     Annuler
+                  </button>
+                  <button
+                    onClick={onAdd}
+                    className="bg-primary text-white px-4 py-2 rounded"
+                  >
+                    Ajouter
                   </button>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FiEdit } from "react-icons/fi";
-import { User } from "../typeData";
+import { User } from "../data/typeData";
 import { deleteFile, uploadFile } from "../tools/tools";
 import { AnimatePresence , motion} from "framer-motion";
 

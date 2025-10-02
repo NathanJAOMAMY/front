@@ -7,7 +7,7 @@ import ProfileModal from './Profile';
 import axios from 'axios';
 import { API_BASE_URL } from '../api';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from '../features/user/user';
+import { setCurrentUser } from '../redux/features/user/user';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiEdit, FiLogOut, FiSearch, FiXCircle } from 'react-icons/fi';
 
@@ -41,7 +41,7 @@ const TopFile = () => {
 
   return (
     <div className="">
-      <div className="flex items-center px-10 py-4 justify-between">
+      <div className="flex items-center px-10 py-2 justify-between">
         {/* Logo */}
         <div>
           <img src={logo} className="w-[150px] h-auto" alt="Logo" />

@@ -25,6 +25,9 @@ export function Button({ title, type = "success", handleSubmit, htmlType = "butt
   );
 }
 
+// export const ButtonUi = ()=>{
+
+// }
 
 // ---------- Pannel ----------
 interface PannelProps {
@@ -32,7 +35,7 @@ interface PannelProps {
   children?: ReactNode;
 }
 
-export function Pannel({ title, children }: PannelProps) {
+export const Pannel = ({ title, children }: PannelProps) =>{
   const [open, setOpen] = useState(false);
 
   return (

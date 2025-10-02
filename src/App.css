@@ -6,6 +6,7 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
   display: block;
   background: #ebebd3;
+  font-size: 80%;
 }
 @import "tailwindcss";
 
@@ -20,6 +21,7 @@ body {
   --text-normal: 1.125rem;
   --text-middle: 1.25rem;
   --text-lg: 2rem;
+  --color-background-primary : #ebebd3;
 }
 
 .side-icon {

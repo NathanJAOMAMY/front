@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useParams } from "react-router-dom";
-import type { ChatMessage } from "../../typeData";
+import type { ChatMessage } from "../../data/typeData";
 import ChatHeader from "./ChatHeader";
 import ChatInput from "./ChatInput";
 import MessageBubble from "./ChatItem";
@@ -11,7 +11,7 @@ import {
   markAsRead,
   setCurrentConversation,
   updateLastMessage,
-} from "../../features/chat/chatSlice";
+} from "../../redux/features/chat/chatSlice";
 import { RootState } from "../../redux";
 import { v4 as uuid } from "uuid";
 import { fetchMessages, sendMessage } from "./chatFonction";

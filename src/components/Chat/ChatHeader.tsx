@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import type { ChatConversation } from "../../typeData";
+import type { ChatConversation } from "../../data/typeData";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux";
 import { BsThreeDotsVertical } from "react-icons/bs";

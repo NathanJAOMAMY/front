@@ -4,7 +4,7 @@ import {
   ChatMessage,
   ConversationUser,
   User,
-} from "../../typeData";
+} from "../../data/typeData";
 import axios, { AxiosResponse } from "axios";
 
 export const sendMessage = async (message: ChatMessage) => {
