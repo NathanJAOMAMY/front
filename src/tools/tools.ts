@@ -14,7 +14,7 @@ const userVoid: User = {
   email: "",
   responsibilities: [],
   statusUser: true,
-  roleUser: "",
+  roleUser: "user",
   createdAt: "",
   updatedAt: "",
   avatar: "",
