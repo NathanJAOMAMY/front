@@ -22,6 +22,7 @@ import ShareModal from "../components/Files/modals/ShareModal";
 import { FiLoader } from "react-icons/fi";
 import ShareDepartementModal from "../components/Files/modals/ShareDepartementModal";
 import Button from "../components/UI/Button";
+import ModalDialoge from "../components/UI/ModalDialoge";
 
 interface HomeProps {
   title: string;
@@ -45,6 +46,8 @@ const Home: FC<HomeProps> = ({ title, path, departement, departementRoutes }) =>
   const [shareModalOpen, setShareModalOpen] = useState(false);
   const [shareTarget, setShareTarget] = useState<any>(null);
   const [shareDeptModalOpen, setShareDeptModalOpen] = useState(false);
+  const [showModalDialoge, setShowModalDialoge] = useState<boolean>(false);
+  const [containeModalDialoge, setContaineModalDialoge] = useState<File | Folder>();
   const [shareDeptTarget, setShareDeptTarget] = useState<any>(null);
   const isDepartement = departement === true;
 
@@ -196,7 +199,7 @@ const Home: FC<HomeProps> = ({ title, path, departement, departementRoutes }) =>
       {/* Header */}
       <div className="flex justify-between items-center border-b-2 pb-3 relative">
         <h1 className="text-xl font-semibold">{title}</h1>
-          <Button onClick={() => setShowModalImport(true)} title="Nouveau" variant="primary" icon="icon-park-outline:upload-one"></Button>
+        <Button onClick={() => setShowModalImport(true)} title="Nouveau" variant="primary" icon="icon-park-outline:upload-one"></Button>
         {showModalImport && (
           <>
             <div
@@ -373,6 +376,7 @@ const Home: FC<HomeProps> = ({ title, path, departement, departementRoutes }) =>
               }}
               onDownload={downloadFolder}
               onRemove={removeFolder}
+              // onRemove={()=>{setShowModalDialoge(true) , setContaineModalDialoge(folders)} }
               onRename={openRenameModal}
               onShare={openShareModal}
               onShareDepartement={openShareDeptModal}
@@ -415,7 +419,10 @@ const Home: FC<HomeProps> = ({ title, path, departement, departementRoutes }) =>
         onClose={closeShareDeptModal}
         onShareConfirm={handleShareDeptConfirm}
       />
-
+      {showModalDialoge && containeModalDialoge &&
+        <ModalDialoge action="delete" content={containeModalDialoge}
+          onClose={() => setShowModalDialoge(false)}
+          title="Suppression" type="File" />}
       {/* Viewer */}
       {isViewerOpen && selectedFile && (
         <FileViewer file={selectedFile} onClose={() => setIsViewerOpen(false)} />

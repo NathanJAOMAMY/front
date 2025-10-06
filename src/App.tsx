@@ -51,8 +51,8 @@ const App = () => {
               <Route path="file" element={<Files />} />
               <Route path="file/:id/:folder" element={<SingleFile />} />
               <Route path="image" element={<Images />} />
-              <Route path="share" element={<Share title="Mes fichiers et dossiers partagés"/>} />
-              <Route path="share-with-me" element={<ShareMe title="Fichiers et dossiers partagés avec moi"/>} />
+              <Route path="share" element={<Share title="Mes fichiers et dossiers partagés" />} />
+              <Route path="share-with-me" element={<ShareMe title="Fichiers et dossiers partagés avec moi" />} />
               <Route path="sign-code" element={<SignCode />} />
               <Route path="users" element={<Users />} />
 
@@ -74,7 +74,7 @@ const App = () => {
                 <Route
                   key={path}
                   path={path}
-                  element={<h1>{title}</h1>}
+                  element={<FileComponant title={title} path={path} departement departementRoutes={path} />}
                 />
               ))}
             </Route>
